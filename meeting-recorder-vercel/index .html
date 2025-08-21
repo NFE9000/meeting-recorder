@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #8f9096; -webkit-text-stroke: #8f9096; background-color: #ffffff}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #2a2c33; -webkit-text-stroke: #2a2c33; background-color: #ffffff; min-height: 16.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #930093; -webkit-text-stroke: #930093; background-color: #ffffff}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #42933e; -webkit-text-stroke: #42933e; background-color: #ffffff}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #2a2c33; -webkit-text-stroke: #2a2c33; background-color: #ffffff}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; color: #2a2c33; -webkit-text-stroke: 0px #2a2c33}
+    span.s3 {font-kerning: none; color: #325eee; -webkit-text-stroke: 0px #325eee}
+    span.s4 {font-kerning: none; color: #930093; -webkit-text-stroke: 0px #930093}
+    span.s5 {font-kerning: none; color: #42933e; -webkit-text-stroke: 0px #42933e}
+    span.s6 {font-kerning: none; color: #a75705; -webkit-text-stroke: 0px #a75705}
+    span.s7 {font-kerning: none; color: #db3f39; -webkit-text-stroke: 0px #db3f39}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"><i>// ===== DATEI 2: api/notion.js =====</i><i></i></span></p>
+<p class="p1"><span class="s1"><i>// (Speichere das als api/notion.js - das ist die Edge Function)</i><i></i></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">export</span><span class="s2"> </span><span class="s1">default</span><span class="s2"> </span><span class="s1">async</span><span class="s2"> </span><span class="s1">function</span><span class="s2"> </span><span class="s3">handler</span><span class="s2">(req, res) {</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1"><i>// CORS Headers für Vercel</i><i></i></span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span>res.</span><span class="s3">setHeader</span><span class="s2">(</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="s2">, </span><span class="s1">'*'</span><span class="s2">);</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span>res.</span><span class="s3">setHeader</span><span class="s2">(</span><span class="s1">'Access-Control-Allow-Methods'</span><span class="s2">, </span><span class="s1">'POST, OPTIONS'</span><span class="s2">);</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span>res.</span><span class="s3">setHeader</span><span class="s2">(</span><span class="s1">'Access-Control-Allow-Headers'</span><span class="s2">, </span><span class="s1">'Content-Type'</span><span class="s2">);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s4">if</span><span class="s1"> (req.method </span><span class="s3">===</span><span class="s1"> </span><span class="s5">'OPTIONS'</span><span class="s1">) {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">return</span><span class="s1"> res.</span><span class="s3">status</span><span class="s1">(</span><span class="s6">200</span><span class="s1">).</span><span class="s3">end</span><span class="s1">();</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s4">if</span><span class="s1"> (req.method </span><span class="s3">!==</span><span class="s1"> </span><span class="s5">'POST'</span><span class="s1">) {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">return</span><span class="s1"> res.</span><span class="s3">status</span><span class="s1">(</span><span class="s6">405</span><span class="s1">).</span><span class="s3">json</span><span class="s1">({ </span><span class="s7">error</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'Method not allowed'</span><span class="s1"> });</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s4">try</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">const</span><span class="s1"> { dbId, apiKey, title, content, status } </span><span class="s3">=</span><span class="s1"> req.body;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">const</span><span class="s1"> notionData </span><span class="s3">=</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">parent</span><span class="s3">:</span><span class="s1"> { </span><span class="s7">database_id</span><span class="s3">:</span><span class="s1"> dbId },</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">properties</span><span class="s3">:</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">'Name'</span><span class="s3">:</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">title</span><span class="s3">:</span><span class="s1"> [{ </span><span class="s7">text</span><span class="s3">:</span><span class="s1"> { </span><span class="s7">content</span><span class="s3">:</span><span class="s1"> title } }]</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">'Status'</span><span class="s3">:</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">select</span><span class="s3">:</span><span class="s1"> { </span><span class="s7">name</span><span class="s3">:</span><span class="s1"> status }</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>},</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">children</span><span class="s3">:</span><span class="s1"> [</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>{</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">object</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'block'</span><span class="s1">,</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">type</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'paragraph'</span><span class="s1">,</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">paragraph</span><span class="s3">:</span><span class="s1"> { </span><span class="s7">rich_text</span><span class="s3">:</span><span class="s1"> [{ </span><span class="s7">text</span><span class="s3">:</span><span class="s1"> { </span><span class="s7">content</span><span class="s3">:</span><span class="s1"> content } }] }</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>]</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">const</span><span class="s2"> notionResponse </span><span class="s3">=</span><span class="s2"> </span><span class="s4">await</span><span class="s2"> </span><span class="s3">fetch</span><span class="s2">(</span><span class="s1">'https://api.notion.com/v1/pages'</span><span class="s2">, {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">method</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'POST'</span><span class="s1">,</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">headers</span><span class="s3">:</span><span class="s1"> {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">'Authorization'</span><span class="s3">:</span><span class="s1"> </span><span class="s5">`Bearer </span><span class="s1">${apiKey}</span><span class="s5">`</span><span class="s1">,</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">'Content-Type'</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'application/json'</span><span class="s1">,</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">'Notion-Version'</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'2022-06-28'</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>},</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">body</span><span class="s3">:</span><span class="s1"> </span><span class="s6">JSON</span><span class="s1">.</span><span class="s3">stringify</span><span class="s1">(notionData)</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">if</span><span class="s1"> (</span><span class="s3">!</span><span class="s1">notionResponse.ok) {</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s4">const</span><span class="s1"> errorText </span><span class="s3">=</span><span class="s1"> </span><span class="s4">await</span><span class="s1"> notionResponse.</span><span class="s3">text</span><span class="s1">();</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s6">console</span><span class="s1">.</span><span class="s3">error</span><span class="s1">(</span><span class="s5">'Notion API Error:'</span><span class="s1">, errorText);</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s4">return</span><span class="s1"> res.</span><span class="s3">status</span><span class="s1">(notionResponse.status).</span><span class="s3">json</span><span class="s1">({<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">error</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'Notion API Error'</span><span class="s1">,<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">details</span><span class="s3">:</span><span class="s1"> errorText<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">const</span><span class="s1"> result </span><span class="s3">=</span><span class="s1"> </span><span class="s4">await</span><span class="s1"> notionResponse.</span><span class="s3">json</span><span class="s1">();</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">return</span><span class="s1"> res.</span><span class="s3">status</span><span class="s1">(</span><span class="s6">200</span><span class="s1">).</span><span class="s3">json</span><span class="s1">({ </span><span class="s7">success</span><span class="s3">:</span><span class="s1"> </span><span class="s6">true</span><span class="s1">, result });</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>} </span><span class="s4">catch</span><span class="s1"> (error) {</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s6">console</span><span class="s2">.</span><span class="s3">error</span><span class="s2">(</span><span class="s1">'Edge Function Error:'</span><span class="s2">, error);</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">return</span><span class="s1"> res.</span><span class="s3">status</span><span class="s1">(</span><span class="s6">500</span><span class="s1">).</span><span class="s3">json</span><span class="s1">({<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">error</span><span class="s3">:</span><span class="s1"> </span><span class="s5">'Server Error'</span><span class="s1">,<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">details</span><span class="s3">:</span><span class="s1"> error.message<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p5"><span class="s1">}</span></p>
+</body>
+</html>
